@@ -35,7 +35,7 @@ function createUserItems(socketId) {
     userContainer.setAttribute("class", "active-user");
     userContainer.setAttribute("id", socketId);
     username.setAttribute("class", "username");
-    username.innerHTML = `کاربر : ${socketId}`;
+    username.innerHTML = `user : ${socketId}`;
 
     userContainer.appendChild(username);
 
@@ -46,7 +46,7 @@ function createUserItems(socketId) {
             "active-user active-user--selected"
         );
         const talkingWithInfo = document.getElementById("talking-with-info");
-        talkingWithInfo.innerHTML = `صحبت با : سوکت ${socketId}`;
+        talkingWithInfo.innerHTML = `talking to : ${socketId} user`;
         callUser(socketId);
     });
 
@@ -84,7 +84,7 @@ socket.on("remove-user", ({ socketId }) => {
 socket.on("call-made", async (data) => {
     if (getCalled) {
         const confirmed = confirm(
-            `کاربر با شناسه ${data.socket} می خواهد با شما تماس بگیرد . قبول می نماِیید؟`
+            `User with ${data.socket} id is calling you!! Do you accept?`
         );
 
         if (!confirmed) {
@@ -124,7 +124,7 @@ socket.on("answer-made", async (data) => {
 });
 
 socket.on("call-rejected", (data) => {
-    alert(`کاربر با شناسه ${data.socket} تماس شما را قبول نکرد!`);
+    alert(`User with ${data.socket} id rejected your call`);
     unselectUser();
 });
 
